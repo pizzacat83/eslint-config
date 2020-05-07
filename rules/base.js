@@ -17,7 +17,7 @@ module.exports = {
         "operator-linebreak": ["warn", "none", { "overrides": { "=": "after" } }],
         "implicit-arrow-linebreak": "off",
         "arrow-parens": "off",
-        "function-paren-newline": ["warn", "multiline"],
+        "function-paren-newline": ["warn", "multiline-arguments"],
         "no-underscore-dangle": "off",
     },
 };
