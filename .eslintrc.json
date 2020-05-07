@@ -1,0 +1,8 @@
+{
+    "extends": "./index.js",
+    "rules": {
+        // because it's convenient if config files look like json
+        "quotes": ["error", "double"],
+        "quote-props": ["error", "always"]
+    }
+}
