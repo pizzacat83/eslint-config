@@ -15,7 +15,7 @@ module.exports = {
         "quotes": ["warn", "single"],
         "operator-linebreak": ["warn", "none", { "overrides": { "=": "after" } }],
         "implicit-arrow-linebreak": "off",
-        "arrow-parens": ["error", "always"],
+        "arrow-parens": "off",
         "no-underscore-dangle": "off",
     },
 };
