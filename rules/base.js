@@ -14,7 +14,13 @@ module.exports = {
         "max-len": ["warn", 100],
         "import/extensions": "off",
         "quotes": ["warn", "single"],
-        "operator-linebreak": ["warn", "none", { "overrides": { "=": "after" } }],
+        "operator-linebreak": ["warn", "none", {
+            "overrides": {
+                "=": "after",
+                "?": "after",
+                ":": "after",
+            },
+        }],
         "implicit-arrow-linebreak": "off",
         "arrow-parens": "off",
         "function-paren-newline": ["warn", "multiline-arguments"],
