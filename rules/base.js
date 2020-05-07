@@ -14,5 +14,6 @@ module.exports = {
         "import/extensions": "off",
         "quotes": ["warn", "single"],
         "operator-linebreak": ["warn", "none", { "overrides": { "=": "after" } }],
+        "implicit-arrow-linebreak": "off",
     },
 };
