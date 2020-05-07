@@ -1,7 +1,10 @@
 module.exports = {
   "extends": [
-    "./index.js",
-    "./react.js",
-    "./typescript.js",
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "./rules/index.js",
+    "./rules/react.js",
+    "./rules/typescript.js",
+    "./rules/typescript-react.js",
   ],
 };

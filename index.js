@@ -1,17 +1,6 @@
 module.exports = {
   "extends": [
     "airbnb-base",
+    "./rules/base.js",
   ],
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".ts", ".jsx", ".tsx"],
-      },
-    },
-  },
-  "rules": {
-    "import/extensions": "off",
-    "quotes": ["warn", "single"],
-    "operator-linebreak": ["warn", "none", { "overrides": { "=": "after" } }],
-  },
 };
