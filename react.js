@@ -3,7 +3,7 @@
 module.exports = {
   "extends": [
     "airbnb",
-    "./rules/index.js",
+    "./rules/base.js",
     "./rules/react.js",
   ],
 };
