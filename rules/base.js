@@ -10,7 +10,7 @@ module.exports = {
         },
     },
     "rules": {
-        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "indent": ["warn", 4, { "SwitchCase": 1 }],
         "import/extensions": "off",
         "quotes": ["warn", "single"],
         "operator-linebreak": ["warn", "none", { "overrides": { "=": "after" } }],
