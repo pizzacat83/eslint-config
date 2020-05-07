@@ -9,6 +9,7 @@ module.exports = {
         "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "^__" }],
 
         "camelcase": "off",
+        "@typescript-eslint/camelcase": "off",
         "@typescript-eslint/naming-convention": ["warn",
             {
                 "selector": "default",
