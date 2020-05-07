@@ -1,7 +1,7 @@
 {
   "name": "@pizzacat83/eslint-config",
   "version": "0.1.0",
-  "description": "",
+  "description": "pizzacat83's eslint config files",
   "main": "index.js",
   "repository": "https://github.com/pizzacat83/eslint-config.git",
   "dependencies": {
