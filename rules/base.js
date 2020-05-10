@@ -25,5 +25,6 @@ module.exports = {
         "arrow-parens": "off",
         "function-paren-newline": ["warn", "multiline-arguments"],
         "no-underscore-dangle": "off",
+        "object-curly-spacing": ["warn", "always"],
     },
 };
