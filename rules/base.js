@@ -26,5 +26,7 @@ module.exports = {
         "function-paren-newline": ["warn", "multiline-arguments"],
         "no-underscore-dangle": "off",
         "object-curly-spacing": ["warn", "always"],
+        "import/no-default-export": ["warn"],
+        "import/prefer-default-export": "off",
     },
 };
