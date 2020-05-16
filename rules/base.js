@@ -28,5 +28,6 @@ module.exports = {
         "object-curly-spacing": ["warn", "always"],
         "import/no-default-export": ["warn"],
         "import/prefer-default-export": "off",
+        "lines-between-class-members": ["warn", "always", { "exceptAfterSingleLine": true }],
     },
 };
