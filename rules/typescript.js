@@ -25,6 +25,8 @@ module.exports = {
 
         "@typescript-eslint/no-namespace": ["error", { "allowDeclarations": true }],
 
+        "@typescript-eslint/member-delimiter-style": ["warn"],
+
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/restrict-template-expressions": ["error", { "allowNumber": true }],
     },
