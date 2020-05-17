@@ -29,5 +29,7 @@ module.exports = {
 
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/restrict-template-expressions": ["error", { "allowNumber": true }],
+
+        "@typescript-eslint/no-floating-promises": ["error"],
     },
 };
