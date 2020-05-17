@@ -31,5 +31,13 @@ module.exports = {
         "@typescript-eslint/restrict-template-expressions": ["error", { "allowNumber": true }],
 
         "@typescript-eslint/no-floating-promises": ["error"],
+
+        // Use const x: T = { hoge: 'fuga' }; instead of const x = { hoge: 'fuga' } as T;
+        // tsc won't raise errors to the latter code, so eslint checks it.
+        // I prefer obj as T to <T>obj because the latter looks like generics.
+        "@typescript-eslint/consistent-type-assertions": ["error", {
+            "assertionStyle": "as",
+            "objectLiteralTypeAssertions": "never",
+        }],
     },
 };
