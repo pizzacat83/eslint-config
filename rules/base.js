@@ -7,6 +7,7 @@ module.exports = {
             "node": {
                 "extensions": [".js", ".ts", ".jsx", ".tsx"],
             },
+            "typescript": {},
         },
     },
     "rules": {
