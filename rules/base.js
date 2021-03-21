@@ -36,6 +36,17 @@ module.exports = {
       "before": true,
       "after": true,
     }],
+    "comma-dangle": ["warn", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "always-multiline",
+    }],
+    "object-shorthand": "warn",
+    "no-else-return": "off", // readability depends on the context
+    "max-classes-per-file": "off",
+
 
     // Detecting Problems
 
@@ -48,5 +59,8 @@ module.exports = {
     // Having a habit of awaiting most of the promises prevents these cases,
     // and I give priority to preventing errors over improving performance.
     "no-return-await": "off",
+
+    // I prefer explicitly initializing variables.
+    "no-undef-init": "off",
   },
 };
