@@ -13,7 +13,7 @@ module.exports = {
     "rules": {
         // Style
 
-        "indent": ["warn", 4, { "SwitchCase": 1 }],
+        "indent": ["warn", 2, { "SwitchCase": 1 }],
         "max-len": ["warn", 100],
         "import/extensions": "off",
         "quotes": ["warn", "single"],
