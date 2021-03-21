@@ -14,7 +14,7 @@ module.exports = {
     // Style
 
     "indent": ["warn", 2, { "SwitchCase": 1 }],
-    "max-len": ["warn", 100],
+    "max-len": ["warn", 120],
     "import/extensions": "off",
     "quotes": ["warn", "single"],
     "operator-linebreak": ["warn", "none", {
