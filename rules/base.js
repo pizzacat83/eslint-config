@@ -46,7 +46,7 @@ module.exports = {
     "object-shorthand": "warn",
     "no-else-return": "off", // readability depends on the context
     "max-classes-per-file": "off",
-
+    "no-multiple-empty-lines": ["warn", { "max": 2 }],
 
     // Detecting Problems
 
