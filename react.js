@@ -1,9 +1,9 @@
 /* eslint quotes: ["error", "double"] */
 
 module.exports = {
-    "extends": [
-        "airbnb",
-        "./rules/base.js",
-        "./rules/react.js",
-    ],
+  "extends": [
+    "airbnb",
+    "./rules/base.js",
+    "./rules/react.js",
+  ],
 };
