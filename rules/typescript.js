@@ -4,6 +4,13 @@ module.exports = {
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    // adjust rules for TypeScript
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error",
+
+    "indent": "off",
+    "@typescript-eslint/indent": ["warn", 2, { "SwitchCase": 1 }],
+
     // Style
 
     // allow prefix __ for exhaustive check
