@@ -1,5 +1,5 @@
 {
-    "extends": "./index.js",
+    "extends": "./src/index.js",
     "rules": {
         // because it's convenient if config files look like json
         "quotes": ["error", "double"],

@@ -2,7 +2,7 @@
   "name": "@pizzacat83/eslint-config",
   "version": "0.1.0",
   "description": "pizzacat83's eslint config files",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://github.com/pizzacat83/eslint-config.git",
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",
