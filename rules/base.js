@@ -1,11 +1,6 @@
 module.exports = {
   "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".ts", ".jsx", ".tsx"],
-      },
-      "typescript": {},
-    },
+    "import/extensions": [".js", ".ts", ".jsx", ".tsx"],
   },
   "rules": {
     // Style
