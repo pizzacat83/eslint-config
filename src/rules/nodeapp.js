@@ -6,15 +6,18 @@ module.exports = {
     "no-console": "off",
 
     "no-restricted-syntax": [
-      // Most of the time this is mistaken for for-of.
-      // (especially after playing with Python)
-      "ForInStatement",
+      "error",
+      [
+        // Most of the time this is mistaken for for-of.
+        // (especially after playing with Python)
+        "ForInStatement",
 
-      // You don't need to care about polyfill in Node apps.
-      // "ForOfStatement",
+        // You don't need to care about polyfill in Node apps.
+        // "ForOfStatement",
 
-      "LabeledStatement",
-      "WithStatement",
+        "LabeledStatement",
+        "WithStatement",
+      ],
     ],
   },
 };
