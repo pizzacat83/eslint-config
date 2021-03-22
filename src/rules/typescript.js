@@ -3,6 +3,11 @@ module.exports = {
     "@typescript-eslint",
   ],
   "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/resolver": {
+      "typescript": {},
+    },
+  },
   "rules": {
     // adjust rules for TypeScript
     "no-shadow": "off",
