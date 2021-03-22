@@ -16,6 +16,8 @@ module.exports = {
     // allow prefix __ for exhaustive check
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "^__" }],
+
+    "camelcase": "off",
     "@typescript-eslint/naming-convention": ["warn",
       {
         "selector": "default",
