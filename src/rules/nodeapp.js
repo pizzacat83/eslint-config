@@ -7,17 +7,15 @@ module.exports = {
 
     "no-restricted-syntax": [
       "error",
-      [
-        // Most of the time this is mistaken for for-of.
-        // (especially after playing with Python)
-        "ForInStatement",
+      // Most of the time this is mistaken for for-of.
+      // (especially after playing with Python)
+      "ForInStatement",
 
-        // You don't need to care about polyfill in Node apps.
-        // "ForOfStatement",
+      // You don't need to care about polyfill in Node apps.
+      // "ForOfStatement",
 
-        "LabeledStatement",
-        "WithStatement",
-      ],
+      "LabeledStatement",
+      "WithStatement",
     ],
   },
 };
