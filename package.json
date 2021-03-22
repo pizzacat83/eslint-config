@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "pizzacat83's eslint config files",
   "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./": "./src/"
+  },
   "repository": "https://github.com/pizzacat83/eslint-config.git",
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",
