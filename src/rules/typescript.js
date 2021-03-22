@@ -11,6 +11,9 @@ module.exports = {
     "indent": "off",
     "@typescript-eslint/indent": ["warn", 2, { "SwitchCase": 1 }],
 
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "error",
+
     // Style
 
     // allow prefix __ for exhaustive check
