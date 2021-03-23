@@ -16,7 +16,11 @@ module.exports = {
       },
     ],
     "import/extensions": "off",
-    "quotes": ["warn", "single"],
+    "quotes": [
+      "warn",
+      "single",
+      { "avoidEscape": true },
+    ],
     "operator-linebreak": ["warn", "none", {
       "overrides": {
         "=": "after",
@@ -50,6 +54,15 @@ module.exports = {
     "no-multiple-empty-lines": ["warn", { "max": 2 }],
     "unicorn/better-regex": "warn",
     "unicorn/prevent-abbreviations": "off", // a little verbose for me
+    "unicorn/no-null": "off",
+    "yoda": [
+      "warn",
+      "never",
+      {
+        // sometimes `if (/* small literal */ < /* large expression */)` is more comprehensible
+        "onlyEquality": true,
+      },
+    ],
 
     // Performance
 

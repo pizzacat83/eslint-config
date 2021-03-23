@@ -23,6 +23,7 @@ module.exports = {
     "@typescript-eslint/quotes": [
       "warn",
       "single",
+      { "avoidEscape": true },
     ],
 
     "object-curly-spacing": "off",
