@@ -1,6 +1,7 @@
 module.exports = {
   "extends": [
     "airbnb",
+    "plugin:unicorn/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
