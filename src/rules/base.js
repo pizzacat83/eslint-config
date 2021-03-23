@@ -49,6 +49,7 @@ module.exports = {
     "max-classes-per-file": "off",
     "no-multiple-empty-lines": ["warn", { "max": 2 }],
     "unicorn/better-regex": "warn",
+    "unicorn/prevent-abbreviations": "off", // a little verbose for me
 
     // Performance
 
