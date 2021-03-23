@@ -19,6 +19,77 @@ module.exports = {
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "error",
 
+    "quotes": "off",
+    "@typescript-eslint/quotes": [
+      "warn",
+      "single",
+    ],
+
+    "object-curly-spacing": "off",
+    "@typescript-eslint/object-curly-spacing": [
+      "warn",
+      "always",
+    ],
+
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": [
+      "warn",
+      "always",
+      {
+        "exceptAfterSingleLine": true,
+      },
+    ],
+
+    "keyword-spacing": "off",
+    "@typescript-eslint/keyword-spacing": [
+      "warn",
+      {
+        "before": true,
+        "after": true,
+      },
+    ],
+
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": [
+      "warn",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "always-multiline",
+      },
+    ],
+
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-useless-constructor": [
+      "error",
+    ],
+
+    "brace-style": "off",
+    "@typescript-eslint/brace-style": [
+      "error",
+      "1tbs",
+      {
+        "allowSingleLine": true,
+      },
+    ],
+
+    "comma-spacing": "off",
+    "@typescript-eslint/comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true,
+      },
+    ],
+
+    "func-call-spacing": "off",
+    "@typescript-eslint/func-call-spacing": [
+      "error",
+      "never",
+    ],
+
     "semi": "off",
     "@typescript-eslint/semi": "warn",
 
