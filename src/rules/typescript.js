@@ -55,6 +55,7 @@ module.exports = {
 
     "prefer-const": "error",
 
+    "@typescript-eslint/consistent-type-imports": "warn",
 
     // Detecting Problems
 
