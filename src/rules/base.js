@@ -18,6 +18,7 @@ module.exports = {
     }],
     "implicit-arrow-linebreak": "off",
     "arrow-parens": "off",
+    "arrow-body-style": "warn",
     "function-paren-newline": ["warn", "multiline-arguments"],
     "no-underscore-dangle": "off",
     "object-curly-spacing": ["warn", "always"],
