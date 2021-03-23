@@ -20,7 +20,52 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": "error",
 
     "semi": "off",
-    "@typescript-eslint/semi": ["warn"],
+    "@typescript-eslint/semi": "warn",
+
+    "space-before-function-paren": "off",
+    "@typescript-eslint/space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always",
+      },
+    ],
+
+    "space-infix-ops": "off",
+    "@typescript-eslint/space-infix-ops": [
+      "error",
+    ],
+
+    "dot-notation": "off",
+    "@typescript-eslint/dot-notation": [
+      "error",
+      {
+        "allowKeywords": true,
+        "allowPattern": "",
+      },
+    ],
+
+    "no-loop-func": "off",
+    "@typescript-eslint/no-loop-func": [
+      "error",
+    ],
+
+    "no-throw-literal": "off",
+    "@typescript-eslint/no-throw-literal": [
+      "error",
+    ],
+
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": false,
+        "allowTernary": false,
+        "allowTaggedTemplates": false,
+        "enforceForJSX": false,
+      },
+    ],
 
     // Style
 
