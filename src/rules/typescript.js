@@ -19,6 +19,9 @@ module.exports = {
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "error",
 
+    "semi": "off",
+    "@typescript-eslint/semi": ["warn"],
+
     // Style
 
     // allow prefix __ for exhaustive check
