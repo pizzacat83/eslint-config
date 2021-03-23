@@ -40,6 +40,11 @@ module.exports = {
     "no-else-return": "off", // readability depends on the context
     "max-classes-per-file": "off",
     "no-multiple-empty-lines": ["warn", { "max": 2 }],
+    "unicorn/better-regex": "warn",
+
+    // Performance
+
+    "unicorn/prefer-regexp-test": "warn",
 
     // Detecting Problems
 
