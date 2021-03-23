@@ -6,7 +6,15 @@ module.exports = {
     // Style
 
     "indent": ["warn", 2, { "SwitchCase": 1 }],
-    "max-len": ["warn", 120],
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+
+        // I think it's better to have template literals look like the result string
+        "ignoreTemplateLiterals": true,
+      },
+    ],
     "import/extensions": "off",
     "quotes": ["warn", "single"],
     "operator-linebreak": ["warn", "none", {
