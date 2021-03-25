@@ -141,12 +141,11 @@ module.exports = {
 
     // Style
 
-    // allow prefix __ for exhaustive check
+    // TypeScript itself can detect unused vars,
+    // which seems more accurate than ESLint.
+    // https://github.com/typescript-eslint/typescript-eslint/issues/122
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      { "varsIgnorePattern": "^(exhaustiveCheck|prove.+)$" },
-    ],
+    "@typescript-eslint/no-unused-vars": "off",
 
     "camelcase": "off",
     "@typescript-eslint/naming-convention": ["warn",
