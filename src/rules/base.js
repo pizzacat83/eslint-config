@@ -63,6 +63,7 @@ module.exports = {
         "onlyEquality": true,
       },
     ],
+    "import/order": "warn",
 
     // Performance
 
