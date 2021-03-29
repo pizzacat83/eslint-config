@@ -15,6 +15,7 @@ module.exports = {
         "ignoreTemplateLiterals": true,
       },
     ],
+    "object-curly-newline": "off",
     "import/extensions": "off",
     "quotes": [
       "warn",
