@@ -16,9 +16,6 @@ module.exports = {
     "indent": "off",
     "@typescript-eslint/indent": ["warn", 2, { "SwitchCase": 1 }],
 
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "error",
-
     "quotes": "off",
     "@typescript-eslint/quotes": [
       "warn",
@@ -180,6 +177,11 @@ module.exports = {
     "@typescript-eslint/consistent-type-imports": "warn",
 
     // Detecting Problems
+
+    // I don't use `var` which causes confusing behavior.
+    // TypeScript can detect usages of block scoped variables before declaration.
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
 
     "no-var": "error",
 
