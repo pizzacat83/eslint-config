@@ -176,6 +176,9 @@ module.exports = {
 
     "@typescript-eslint/consistent-type-imports": "warn",
 
+    // Some check conflicts with TypeScript
+    "unicorn/no-useless-undefined": "off",
+
     // Detecting Problems
 
     // I don't use `var` which causes confusing behavior.
