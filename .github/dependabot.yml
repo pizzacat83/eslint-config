@@ -1,0 +1,33 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: eslint-plugin-unicorn
+    versions:
+    - 30.0.0
+  - dependency-name: "@typescript-eslint/parser"
+    versions:
+    - 2.34.0
+    - 4.21.0
+  - dependency-name: "@typescript-eslint/eslint-plugin"
+    versions:
+    - 2.34.0
+    - 4.21.0
+  - dependency-name: eslint-plugin-react
+    versions:
+    - 7.22.0
+    - 7.23.1
+  - dependency-name: lodash
+    versions:
+    - 4.17.20
+    - 4.17.21
+  - dependency-name: eslint-plugin-jsx-a11y
+    versions:
+    - 6.4.1
+  - dependency-name: eslint-plugin-import
+    versions:
+    - 2.22.1
