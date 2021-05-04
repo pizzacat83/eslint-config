@@ -53,9 +53,19 @@ module.exports = {
     "no-else-return": "off", // readability depends on the context
     "max-classes-per-file": "off",
     "no-multiple-empty-lines": ["warn", { "max": 2 }],
+
+    "no-var": "error",
+    "prefer-const": "error",
+
     "unicorn/better-regex": "warn",
     "unicorn/prevent-abbreviations": "off", // a little verbose for me
     "unicorn/no-null": "off",
+
+    // it is clear that spread operator does not mutate the original array
+    "prefer-spread": "error",
+
+    "prefer-rest-params": "error",
+
     "yoda": [
       "warn",
       "never",

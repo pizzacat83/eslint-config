@@ -172,8 +172,6 @@ module.exports = {
 
     "@typescript-eslint/type-annotation-spacing": "warn",
 
-    "prefer-const": "error",
-
     "@typescript-eslint/consistent-type-imports": "warn",
 
     // Some check conflicts with TypeScript
@@ -185,12 +183,6 @@ module.exports = {
     // TypeScript can detect usages of block scoped variables before declaration.
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "off",
-
-    "no-var": "error",
-
-    "prefer-spread": "error",
-
-    "prefer-rest-params": "error",
 
     "@typescript-eslint/restrict-template-expressions": ["error", { "allowNumber": true }],
 
