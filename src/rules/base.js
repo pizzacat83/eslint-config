@@ -76,6 +76,15 @@ module.exports = {
     ],
     "import/order": "warn",
 
+    "no-irregular-whitespace": [
+      "error",
+      {
+        // use escape sequences \u0000 in strings instead of raw irregular whitespaces
+        // to make them not looking like normal whitespaces
+        "skipStrings": false,
+      },
+    ],
+
     // Performance
 
     "unicorn/prefer-regexp-test": "warn",
