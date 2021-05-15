@@ -177,6 +177,8 @@ module.exports = {
     // Some check conflicts with TypeScript
     "unicorn/no-useless-undefined": "off",
 
+    "@typescript-eslint/array-type": "warn",
+
     // Detecting Problems
 
     // I don't use `var` which causes confusing behavior.
