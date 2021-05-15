@@ -24,6 +24,7 @@ jobs:
       id: tmpdir
 
     # TODO: DRY duplicate steps for 'before' and 'after'
+    # maybe strategy matrix can help?
 
     # Generate snapshots of 'before'
 
