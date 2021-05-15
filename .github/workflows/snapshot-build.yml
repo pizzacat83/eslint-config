@@ -46,7 +46,7 @@ jobs:
 
     - name: Generate Snapshot
       run: |
-        yarn run --silent eslint --print-config script.ts >> "${{ steps.tmpdir.outputs.TMPDIR }}/before/typescript-ts.json"
+        yarn run --silent eslint --config src/typescript.js --print-config script.ts >> "${{ steps.tmpdir.outputs.TMPDIR }}/before/typescript-ts.json"
         # TODO: add other snapshots
 
     # Generate snapshots of 'after'
@@ -70,7 +70,7 @@ jobs:
 
     - name: Generate Snapshot
       run: |
-        yarn run --silent eslint --print-config script.ts >> "${{ steps.tmpdir.outputs.TMPDIR }}/after/typescript-ts.json"
+        yarn run --silent eslint --config src/typescript.js --print-config script.ts >> "${{ steps.tmpdir.outputs.TMPDIR }}/after/typescript-ts.json"
         # TODO: add other snapshots
     
     # End of generating snapshots
