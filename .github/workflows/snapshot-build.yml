@@ -50,8 +50,27 @@ jobs:
 
     - name: Generate Snapshot
       run: |
-        npx --quiet eslint --config src/typescript.js --print-config script.ts >> "${{ steps.tmpdir.outputs.TMPDIR }}/typescript-ts.json"
-        # TODO: add other snapshots
+        data=( \
+          "index" "script.js" "index" \
+          "nodeapp" "script.js" "nodeapp" \
+          "react" "script.js" "react-js" \
+          "react" "script.jsx" "react-jsx" \
+          "typescript" "script.ts" "typescript-ts" \
+          "typescript" "script.js" "typescript-js" \
+          "typescript-nodeapp" "script.ts" "typescript-nodeapp-ts" \
+          "typescript-nodeapp" "script.js" "typescript-nodeapp-js" \
+          "typescript-react" "script.ts" "typescript-react-ts" \
+          "typescript-react" "script.tsx" "typescript-react-tsx" \
+          "typescript-react" "script.js" "typescript-react-js" \
+          "typescript-react" "script.jsx" "typescript-react-jsx" \
+        )
+
+        for (( i = 0; i < ${#data[@]} / 3; i++ )); do
+          config=${data[(($i * 3))]}
+          target=${data[(($i * 3 + 1))]}
+          output=${data[(($i * 3 + 2))]}
+          npx --quiet eslint --config "src/$config.js" --print-config "$target" >> "${{ steps.tmpdir.outputs.TMPDIR }}/$output.json"
+        done
     
     - name: Upload snapshots
       uses: actions/upload-artifact@v2
