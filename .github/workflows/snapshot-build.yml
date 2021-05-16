@@ -56,13 +56,9 @@ jobs:
           "react" "script.js" "react-js" \
           "react" "script.jsx" "react-jsx" \
           "typescript" "script.ts" "typescript-ts" \
-          "typescript" "script.js" "typescript-js" \
           "typescript-nodeapp" "script.ts" "typescript-nodeapp-ts" \
-          "typescript-nodeapp" "script.js" "typescript-nodeapp-js" \
           "typescript-react" "script.ts" "typescript-react-ts" \
           "typescript-react" "script.tsx" "typescript-react-tsx" \
-          "typescript-react" "script.js" "typescript-react-js" \
-          "typescript-react" "script.jsx" "typescript-react-jsx" \
         )
 
         for (( i = 0; i < ${#data[@]} / 3; i++ )); do
