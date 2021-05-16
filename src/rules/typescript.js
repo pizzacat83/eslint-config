@@ -179,6 +179,14 @@ module.exports = {
 
     "@typescript-eslint/array-type": "warn",
 
+    // node:* prefixed modules are not available in @types/node currently.
+    // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/52595
+    "unicorn/prefer-node-protocol": "off",
+
+    // TODO: remove this rule when it is enabled in base rule
+    // this rule is disabled in base but there's no problem to enable this in TypeScript projects
+    "unicorn/prefer-module": "warn",
+
     // Detecting Problems
 
     // I don't use `var` which causes confusing behavior.
