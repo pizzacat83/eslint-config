@@ -58,8 +58,15 @@ module.exports = {
     "prefer-const": "error",
 
     "unicorn/better-regex": "warn",
+    "unicorn/prefer-array-flat": "warn",
+    "unicorn/prefer-array-flat-map": "warn",
+    "unicorn/prefer-switch": "warn",
     "unicorn/prevent-abbreviations": "off", // a little verbose for me
     "unicorn/no-null": "off",
+
+    // TODO: enable
+    // temporarily disabled because this will introduce large change
+    "unicorn/prefer-module": "off",
 
     // it is clear that spread operator does not mutate the original array
     "prefer-spread": "error",
