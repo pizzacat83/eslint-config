@@ -6,6 +6,7 @@ module.exports = {
     // Style
 
     "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "no-trailing-spaces": "warn",
     "max-len": [
       "warn",
       {
