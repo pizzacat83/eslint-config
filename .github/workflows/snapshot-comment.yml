@@ -66,15 +66,6 @@ jobs:
             const { promises: fs } = require('fs');
             const path = require('path');
 
-            const escapeRule = {
-              '&': '&amp;',
-              '<': '&lt;',
-              '>': '&gt;',
-              '"': '&quot;',
-              "'": '&#39;',
-            };
-            const escapeHTML = (str) => str.replace(/[&<>'"]/g, c => escapeRule[c]);
-
             const readFile = async (file) => {
               return await fs.readFile(
                 path.join(process.env.GA_TMPDIR_PATH, 'snapshots', file),
@@ -102,13 +93,13 @@ jobs:
             Resolved config changed.
 
             ${ backquotes }
-            ${ escapeHTML(diffSummary) }
+            ${ diffSummary }
             ${ backquotes }
 
             <details>
             <summary>diff</summary>
             ${ backquotes }diff
-            ${ escapeHTML(diffComplete) }
+            ${ diffComplete }
             ${ backquotes }
             </details>
             `;
