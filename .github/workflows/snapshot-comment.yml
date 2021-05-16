@@ -97,20 +97,20 @@ jobs:
 
             return diffSummary === '' ?
               'Resolved config did not change.' :
-              `
-                Resolved config changed.
+            `
+            Resolved config changed.
 
-                ${ backquotes }
-                ${ escapeHTML(diffSummary) }
-                ${ backquotes }
+            ${ backquotes }
+            ${ escapeHTML(diffSummary) }
+            ${ backquotes }
 
-                <details>
-                <summary>diff</summary>
-                ${ backquotes }diff
-                ${ escapeHTML(diffComplete) }
-                ${ backquotes }
-                </details>
-              `;
+            <details>
+            <summary>diff</summary>
+            ${ backquotes }diff
+            ${ escapeHTML(diffComplete) }
+            ${ backquotes }
+            </details>
+            `;
 
       - uses: marocchino/sticky-pull-request-comment@b015005e3fd26a04ddada902a666dd1cb3c3972b
         with:
