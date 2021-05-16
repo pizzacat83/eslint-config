@@ -85,11 +85,14 @@ jobs:
             const diffComplete = await readFile('diff-complete.diff');
 
             const backquotes = '`'.repeat(
-              [diffSummary, diffComplete]
-                .flatMap(s => s.match(/`+/g) || [])
-                .map(s => s.length)
-                .reduce((a,b) => Math.max(a,b), 0)
-                + 1
+              Math.max(
+                3,
+                [diffSummary, diffComplete]
+                  .flatMap(s => s.match(/`+/g) || [])
+                  .map(s => s.length)
+                  .reduce((a,b) => Math.max(a,b), 0)
+                  + 1,
+              )
             );
 
             return diffSummary === '' ?
