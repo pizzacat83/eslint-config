@@ -1,0 +1,115 @@
+name: Post Snapshot to Pull Request
+
+on:
+  workflow_run:
+    workflows: ["Build Snapshot"]
+    types: [completed]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  comment:
+    name: Post Snapshot to PR
+
+    runs-on: ubuntu-latest
+
+    if: >
+      ${{ github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Prepare temporary directory
+        run: |
+          tmpdir="$(mktemp -d)"
+          echo ::set-output name=TMPDIR::$tmpdir
+        id: tmpdir
+
+      - name: 'Download artifact'
+        uses: actions/github-script@v3.1.0
+        env:
+          GA_TMPDIR_PATH: ${{ steps.tmpdir.outputs.TMPDIR }}
+        with:
+          # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+          script: |
+            var artifacts = await github.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               run_id: ${{ github.event.workflow_run.id }},
+            });
+            var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
+              return artifact.name == "snapshots"
+            })[0];
+            var download = await github.actions.downloadArtifact({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               artifact_id: matchArtifact.id,
+               archive_format: 'zip',
+            });
+            var fs = require('fs');
+            var path = require('path');
+            fs.writeFileSync(path.join(process.env.GA_TMPDIR_PATH, 'snapshots.zip'), Buffer.from(download.data));
+
+      - run: unzip "$GA_TMPDIR_PATH/snapshots.zip"
+        env:
+          GA_TMPDIR_PATH: ${{ steps.tmpdir.outputs.TMPDIR }}
+
+      - name: Compose comment
+        id: comment
+        uses: actions/github-script@v3.1.0
+        env:
+          GA_TMPDIR_PATH: ${{ steps.tmpdir.outputs.TMPDIR }}
+        with:
+          result-encoding: string
+          script: |
+            const { promises: fs } = require('fs');
+            const path = require('path');
+
+            const escapeRule = {
+              '&': '&amp;',
+              '<': '&lt;',
+              '>': '&gt;',
+              '"': '&quot;',
+              "'": '&#39;',
+            };
+            const escapeHTML = (str) => str.replace(/[&<>'"]/g, c => escapeRule[c]);
+
+            const readFile = async (file) => {
+              return await fs.readFile(
+                path.join(process.env.GA_TMPDIR_PATH, 'snapshots', file),
+                { encoding: 'utf-8' },
+              );
+            };
+
+            const diffSummary = await readFile('diff-summary.txt');
+            const diffComplete = await readFile('diff-complete.diff');
+
+            const backquotes = '`'.repeat(
+              [diffSummary, diffComplete]
+                .flatMap(s => s.match(/`+/g))
+                .map(s => s.length)
+                .reduce((a,b) => Math.max(a,b), 0)
+                + 1
+            );
+
+            return diffSummary === '' ?
+              'Resolved config did not change.' :
+              `
+                Resolved config changed.
+
+                ${ backquotes }
+                ${ escapeHTML(diffSummary) }
+                ${ backquotes }
+
+                <details>
+                <summary>diff</summary>
+                ${ backquotes }diff
+                ${ escapeHTML(diffComplete) }
+                ${ backquotes }
+                </details>
+              `;
+
+      - uses: marocchino/sticky-pull-request-comment@b015005e3fd26a04ddada902a666dd1cb3c3972b
+        with:
+          header: snapshots
+          message: ${{ steps.comment.outputs.result }}
