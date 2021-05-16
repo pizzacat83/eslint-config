@@ -2,7 +2,7 @@ name: Post Snapshot to Pull Request
 
 on:
   workflow_run:
-    workflows: ["Aggregate snapshots"]
+    workflows: ["Build Snapshot"]
     types: [completed]
 
 permissions:
