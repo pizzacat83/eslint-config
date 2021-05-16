@@ -13,68 +13,75 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        include:
+          - target:
+              name: before
+              ref: ${{ github.base_ref }}
+          - target:
+              name: after
+              ref: ${{ github.head_ref }}
+
+
     steps:
     - name: Prepare temporary directory
       run: |
         tmpdir="$(mktemp -d)"
         echo ::set-output name=TMPDIR::$tmpdir
-        mkdir "$tmpdir/before"
-        mkdir "$tmpdir/after"
-        ls "$tmpdir" # TODO: remove debug command
       id: tmpdir
-
-    # TODO: DRY duplicate steps for 'before' and 'after'
-    # maybe strategy matrix can help?
-
-    # Generate snapshots of 'before'
-
-    - name: Checkout 'before'
+      
+    - name: Checkout '${{ matrix.target.name }}'
       uses: actions/checkout@v2
       with:
-        ref: ${{ github.base_ref }}
+        ref: ${{ matrix.target.ref }}
         persist-credentials: false
 
     - name: Read .nvmrc
       run: echo ::set-output name=NVMRC::$(cat .nvmrc)
-      id: nvm_before
+      id: nvm
 
-    - name: Use Node.js ${{ steps.nvm_before.outputs.NVMRC }}
+    - name: Use Node.js ${{ steps.nvm.outputs.NVMRC }}
       uses: actions/setup-node@v1
       with:
-        node-version: "${{ steps.nvm_before.outputs.NVMRC }}"
+        node-version: "${{ steps.nvm.outputs.NVMRC }}"
 
     - run: npm ci
 
     - name: Generate Snapshot
       run: |
-        npx --quiet eslint --config src/typescript.js --print-config script.ts >> "${{ steps.tmpdir.outputs.TMPDIR }}/before/typescript-ts.json"
-        # TODO: add other snapshots
-
-    # Generate snapshots of 'after'
-
-    - name: Checkout 'after'
-      uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }}
-        persist-credentials: false
-
-    - name: Read .nvmrc
-      run: echo ::set-output name=NVMRC::$(cat .nvmrc)
-      id: nvm_after
-
-    - name: Use Node.js ${{ steps.nvm_after.outputs.NVMRC }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: "${{ steps.nvm_after.outputs.NVMRC }}"
-
-    - run: npm ci
-
-    - name: Generate Snapshot
-      run: |
-        npx --quiet eslint --config src/typescript.js --print-config script.ts >> "${{ steps.tmpdir.outputs.TMPDIR }}/after/typescript-ts.json"
+        npx --quiet eslint --config src/typescript.js --print-config script.ts >> "${{ steps.tmpdir.outputs.TMPDIR }}/typescript-ts.json"
         # TODO: add other snapshots
     
-    # End of generating snapshots
+    - name: Upload snapshots
+      uses: actions/upload-artifact@v2
+      with:
+        name: snapshots-${{ matrix.target.name }}
+        path: ${{ steps.tmpdir.outputs.TMPDIR }}
+
+  aggregate:
+    name: Aggregate snapshots
+
+    runs-on: ubuntu-latest
+
+    needs: [ build ]
+
+    steps:
+    - name: Prepare temporary directory
+      run: |
+        tmpdir="$(mktemp -d)"
+        echo ::set-output name=TMPDIR::$tmpdir
+      id: tmpdir
+    
+    - uses: actions/download-artifact@v2
+      with:
+        name: snapshots-before
+        path: ${{ steps.tmpdir.outputs.TMPDIR }}/before
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: snapshots-after
+        path: ${{ steps.tmpdir.outputs.TMPDIR }}/after
 
     - name: Generate diff
       run: |
