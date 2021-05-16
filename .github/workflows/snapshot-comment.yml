@@ -113,3 +113,4 @@ jobs:
         with:
           header: snapshots
           message: ${{ steps.comment.outputs.result }}
+          number: ${{ github.event.workflow_run.pull_requests[0] }}
