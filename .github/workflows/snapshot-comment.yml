@@ -2,7 +2,7 @@ name: Post Snapshot to Pull Request
 
 on:
   workflow_run:
-    workflows: ["Aggregate snapshots"]
+    workflows: ["Build Snapshot"]
     types: [completed]
 
 permissions:
@@ -50,7 +50,7 @@ jobs:
             var path = require('path');
             fs.writeFileSync(path.join(process.env.GA_TMPDIR_PATH, 'snapshots.zip'), Buffer.from(download.data));
 
-      - run: unzip "$GA_TMPDIR_PATH/snapshots.zip"
+      - run: unzip "$GA_TMPDIR_PATH/snapshots.zip" -d "$GA_TMPDIR_PATH/snapshots"
         env:
           GA_TMPDIR_PATH: ${{ steps.tmpdir.outputs.TMPDIR }}
 
