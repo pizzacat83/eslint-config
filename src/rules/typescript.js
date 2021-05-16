@@ -174,6 +174,12 @@ module.exports = {
 
     "@typescript-eslint/consistent-type-imports": "warn",
 
+    "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+
+    "@typescript-eslint/no-require-imports": "warn",
+
+    "@typescript-eslint/non-nullable-type-assertion-style": "warn",
+
     // Some check conflicts with TypeScript
     "unicorn/no-useless-undefined": "off",
 
@@ -195,7 +201,20 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": "off",
 
     "@typescript-eslint/restrict-template-expressions": ["error", { "allowNumber": true }],
+    "@typescript-eslint/restrict-plus-operands": [
+      "error",
+      { "checkCompoundAssignments": true },
+    ],
+    "@typescript-eslint/no-base-to-string": "error",
 
     "@typescript-eslint/no-floating-promises": ["error"],
+
+    "@typescript-eslint/no-confusing-non-null-assertion": ["error"],
+
+    "@typescript-eslint/no-confusing-void-expression": ["error"],
+
+    "@typescript-eslint/no-dynamic-delete": ["error"],
+
+    "@typescript-eslint/no-unnecessary-condition": ["error"],
   },
 };
