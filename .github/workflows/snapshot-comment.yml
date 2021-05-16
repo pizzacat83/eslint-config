@@ -86,7 +86,7 @@ jobs:
 
             const backquotes = '`'.repeat(
               [diffSummary, diffComplete]
-                .flatMap(s => s.match(/`+/g))
+                .flatMap(s => s.match(/`+/g) ?? [])
                 .map(s => s.length)
                 .reduce((a,b) => Math.max(a,b), 0)
                 + 1
