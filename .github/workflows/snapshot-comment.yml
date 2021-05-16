@@ -98,9 +98,11 @@ jobs:
 
             <details>
             <summary>diff</summary>
+
             ${ backquotes }diff
             ${ diffComplete }
             ${ backquotes }
+
             </details>
             `;
 
