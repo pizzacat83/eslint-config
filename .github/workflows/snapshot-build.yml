@@ -1,0 +1,110 @@
+name: Build Snapshot
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build Snapshot
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - target:
+              name: before
+              ref: ${{ github.base_ref }}
+          - target:
+              name: after
+              ref: ${{ github.head_ref }}
+
+
+    steps:
+    - name: Prepare temporary directory
+      run: |
+        tmpdir="$(mktemp -d)"
+        echo ::set-output name=TMPDIR::$tmpdir
+      id: tmpdir
+      
+    - name: Checkout '${{ matrix.target.name }}'
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ matrix.target.ref }}
+        persist-credentials: false
+
+    - name: Read .nvmrc
+      run: echo ::set-output name=NVMRC::$(cat .nvmrc)
+      id: nvm
+
+    - name: Use Node.js ${{ steps.nvm.outputs.NVMRC }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: "${{ steps.nvm.outputs.NVMRC }}"
+
+    - run: npm ci
+
+    - name: Generate Snapshot
+      run: |
+        data=( \
+          "index" "script.js" "index" \
+          "nodeapp" "script.js" "nodeapp" \
+          "react" "script.js" "react-js" \
+          "react" "script.jsx" "react-jsx" \
+          "typescript" "script.ts" "typescript-ts" \
+          "typescript-nodeapp" "script.ts" "typescript-nodeapp-ts" \
+          "typescript-react" "script.ts" "typescript-react-ts" \
+          "typescript-react" "script.tsx" "typescript-react-tsx" \
+        )
+
+        for (( i = 0; i < ${#data[@]} / 3; i++ )); do
+          config=${data[(($i * 3))]}
+          target=${data[(($i * 3 + 1))]}
+          output=${data[(($i * 3 + 2))]}
+          npx --quiet eslint --config "src/$config.js" --print-config "$target" >> "${{ steps.tmpdir.outputs.TMPDIR }}/$output.json"
+        done
+    
+    - name: Upload snapshots
+      uses: actions/upload-artifact@v2
+      with:
+        name: snapshots-${{ matrix.target.name }}
+        path: ${{ steps.tmpdir.outputs.TMPDIR }}
+
+  aggregate:
+    name: Aggregate snapshots
+
+    runs-on: ubuntu-latest
+
+    needs: [ build ]
+
+    steps:
+    - name: Prepare temporary directory
+      run: |
+        tmpdir="$(mktemp -d)"
+        echo ::set-output name=TMPDIR::$tmpdir
+      id: tmpdir
+    
+    - uses: actions/download-artifact@v2
+      with:
+        name: snapshots-before
+        path: ${{ steps.tmpdir.outputs.TMPDIR }}/before
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: snapshots-after
+        path: ${{ steps.tmpdir.outputs.TMPDIR }}/after
+
+    - name: Generate diff
+      # TODO: use tools that can compare JSON semantically instead of simple diff
+      run: |
+        git diff --compact-summary "${{ steps.tmpdir.outputs.TMPDIR }}/before" "${{ steps.tmpdir.outputs.TMPDIR }}/after" | tee -a "${{ steps.tmpdir.outputs.TMPDIR }}/diff-summary.txt"
+        git diff "${{ steps.tmpdir.outputs.TMPDIR }}/before" "${{ steps.tmpdir.outputs.TMPDIR }}/after" | tee -a "${{ steps.tmpdir.outputs.TMPDIR }}/diff-complete.diff"
+
+    - name: Upload snapshots
+      uses: actions/upload-artifact@v2
+      with:
+        name: snapshots
+        path: ${{ steps.tmpdir.outputs.TMPDIR }}

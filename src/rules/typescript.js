@@ -177,6 +177,8 @@ module.exports = {
     // Some check conflicts with TypeScript
     "unicorn/no-useless-undefined": "off",
 
+    "@typescript-eslint/array-type": "warn",
+
     // node:* prefixed modules are not available in @types/node currently.
     // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/52595
     "unicorn/prefer-node-protocol": "off",
