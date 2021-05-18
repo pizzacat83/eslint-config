@@ -99,10 +99,9 @@ jobs:
         path: ${{ steps.tmpdir.outputs.TMPDIR }}/after
 
     - name: Generate diff
-      # TODO: use tools that can compare JSON semantically instead of simple diff
       run: |
         git diff --compact-summary "${{ steps.tmpdir.outputs.TMPDIR }}/before" "${{ steps.tmpdir.outputs.TMPDIR }}/after" | tee -a "${{ steps.tmpdir.outputs.TMPDIR }}/diff-summary.txt"
-        git diff "${{ steps.tmpdir.outputs.TMPDIR }}/before" "${{ steps.tmpdir.outputs.TMPDIR }}/after" | tee -a "${{ steps.tmpdir.outputs.TMPDIR }}/diff-complete.diff"
+        git diff --unified=10 "${{ steps.tmpdir.outputs.TMPDIR }}/before" "${{ steps.tmpdir.outputs.TMPDIR }}/after" | tee -a "${{ steps.tmpdir.outputs.TMPDIR }}/diff-complete.diff"
 
     - name: Upload snapshots
       uses: actions/upload-artifact@v2
