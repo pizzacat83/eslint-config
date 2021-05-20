@@ -215,6 +215,7 @@ module.exports = {
 
     "@typescript-eslint/no-dynamic-delete": ["error"],
 
-    "@typescript-eslint/no-unnecessary-condition": ["error"],
+    // This rule seems nice, but it does not work well with exhaustive check.
+    "@typescript-eslint/no-unnecessary-condition": "off",
   },
 };
