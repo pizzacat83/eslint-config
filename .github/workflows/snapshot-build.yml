@@ -64,7 +64,7 @@ jobs:
           config=${data[(($i * 3))]}
           target=${data[(($i * 3 + 1))]}
           output=${data[(($i * 3 + 2))]}
-          npx --quiet eslint --config "src/$config.js" --print-config "$target" \
+          npx --quiet eslint --config "src/$config.js" --print-config "$target" | \
             jq --sort-keys '.' >> "${{ steps.tmpdir.outputs.TMPDIR }}/$output.json"
         done
     
