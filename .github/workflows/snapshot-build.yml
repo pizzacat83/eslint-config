@@ -41,7 +41,7 @@ jobs:
       id: nvm
 
     - name: Use Node.js ${{ steps.nvm.outputs.NVMRC }}
-      uses: actions/setup-node@v2.1.5
+      uses: actions/setup-node@v2.3.1
       with:
         node-version: "${{ steps.nvm.outputs.NVMRC }}"
 
