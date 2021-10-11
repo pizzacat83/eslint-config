@@ -6,18 +6,12 @@ updates:
   schedule:
     interval: daily
   ignore:
-    - dependency-type: production
-      # Since this package is a library,
-      # we don't need patch updates to production dependencies.
-      dependency-name: "*"
-      update-types: ["version-update:semver-patch"]
-
-    - dependency-type: development
-      # We may want patch updates of non-peer devDependencies
-      # but most of the devDependencies are peerDependencies
-      # and we don't need patch updates of peerDependencies.
-      # TODO: list peerDependencies instead of ignoring all
-      dependency-name: "*"
+    # Since this package is a library, we don't need patch updates to
+    # production dependencies and peer dependencies.
+    # We might want patch updates of non-peer dev dependencies
+    # but most of the dev dependencies are peer dependencies
+    # so we just ignore all patch updates for simplicity.
+    - dependency-name: "*"
       update-types: ["version-update:semver-patch"]
   open-pull-requests-limit: 10
 
