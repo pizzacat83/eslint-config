@@ -1,42 +1,23 @@
 version: 2
 updates:
 
-# npm production dependencies
 - package-ecosystem: npm
   directory: "/"
   schedule:
     interval: daily
-  allow:
+  ignore:
     - dependency-type: production
-  ignore:
-    # Since this package is a library,
-    # we don't need patch updates to production dependencies.
-    - dependency-name: "*"
+      # Since this package is a library,
+      # we don't need patch updates to production dependencies.
+      dependency-name: "*"
       update-types: ["version-update:semver-patch"]
-  open-pull-requests-limit: 10
 
-
-# npm non-peer devDependencies
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-  allow:
-    # TODO: generate list of non-peer devDependencies
-    - dependency-name: typescript
-  open-pull-requests-limit: 10
-
-# npm peer dependencies
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-  allow:
     - dependency-type: development
-  ignore:
-    # Since this package is a library,
-    # we don't need patch updates to peer dependencies.
-    - dependency-name: "*"
+      # We may want patch updates of non-peer devDependencies
+      # but most of the devDependencies are peerDependencies
+      # and we don't need patch updates of peerDependencies.
+      # TODO: list peerDependencies instead of ignoring all
+      dependency-name: "*"
       update-types: ["version-update:semver-patch"]
   open-pull-requests-limit: 10
 
