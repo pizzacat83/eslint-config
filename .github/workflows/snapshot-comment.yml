@@ -29,14 +29,14 @@ jobs:
         id: tmpdir
 
       - name: 'Download artifact'
-        uses: actions/github-script@v4.0.2
+        uses: actions/github-script@v5.0.0
         env:
           GA_TMPDIR_PATH: ${{ steps.tmpdir.outputs.TMPDIR }}
           GA_WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}
         with:
           # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
           script: |
-            var artifacts = await github.actions.listWorkflowRunArtifacts({
+            var artifacts = await github.rest.actions.listWorkflowRunArtifacts({
                owner: context.repo.owner,
                repo: context.repo.repo,
                run_id: process.env.GA_WORKFLOW_RUN_ID,
@@ -44,7 +44,7 @@ jobs:
             var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
               return artifact.name == "snapshots"
             })[0];
-            var download = await github.actions.downloadArtifact({
+            var download = await github.rest.actions.downloadArtifact({
                owner: context.repo.owner,
                repo: context.repo.repo,
                artifact_id: matchArtifact.id,
@@ -60,7 +60,7 @@ jobs:
 
       - name: Compose comment
         id: comment
-        uses: actions/github-script@v4.0.2
+        uses: actions/github-script@v5.0.0
         env:
           GA_TMPDIR_PATH: ${{ steps.tmpdir.outputs.TMPDIR }}
         with:
