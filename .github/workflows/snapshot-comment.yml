@@ -29,7 +29,7 @@ jobs:
         id: tmpdir
 
       - name: 'Download artifact'
-        uses: actions/github-script@v5.0.0
+        uses: actions/github-script@v5.1.0
         env:
           GA_TMPDIR_PATH: ${{ steps.tmpdir.outputs.TMPDIR }}
           GA_WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}
@@ -60,7 +60,7 @@ jobs:
 
       - name: Compose comment
         id: comment
-        uses: actions/github-script@v5.0.0
+        uses: actions/github-script@v5.1.0
         env:
           GA_TMPDIR_PATH: ${{ steps.tmpdir.outputs.TMPDIR }}
         with:
