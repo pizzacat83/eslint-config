@@ -31,7 +31,7 @@ jobs:
       id: tmpdir
       
     - name: Checkout '${{ matrix.target.name }}'
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         ref: ${{ matrix.target.ref }}
         persist-credentials: false
