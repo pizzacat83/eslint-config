@@ -120,7 +120,7 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: marocchino/sticky-pull-request-comment@b015005e3fd26a04ddada902a666dd1cb3c3972b
+      - uses: marocchino/sticky-pull-request-comment@da224cb0e3c8b27cae68d40c93649421b5b93e45
         with:
           header: snapshots
           message: ${{ needs.compose.outputs.comment }}
