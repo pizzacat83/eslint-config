@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "exports": {
     ".": "./src/index.js",
-    "./": "./src/"
+    "./nodeapp": "./src/nodeapp.js",
+    "./typescript-nodeapp": "./src/typescript-nodeapp.js"
   },
   "repository": "https://github.com/pizzacat83/eslint-config.git",
   "peerDependencies": {
